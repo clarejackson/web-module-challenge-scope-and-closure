@@ -14,10 +14,11 @@
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
 */
+
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
-
+console.log(processFirstItem(['foo', 'bar'], '(str) => str + str'));
 // ⭐️ Example Challenge END ⭐️
 
 
