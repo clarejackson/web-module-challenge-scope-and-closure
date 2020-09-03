@@ -18,7 +18,9 @@
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
-console.log(processFirstItem(['foo', 'bar'], '(str) => str + str'));
+console.log(processFirstItem(['foo', 'bar'], (str) => str + str));
+
+
 // ⭐️ Example Challenge END ⭐️
 
 
@@ -29,10 +31,16 @@ console.log(processFirstItem(['foo', 'bar'], '(str) => str + str'));
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * Counter1 returns another function and creates 'count' inside the parent function. Counter2 pulls 'count' in from the global scope and returns count incremented.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * Counter1 uses closure because the return function is inside the parent function of counterMaker.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * 
+ * Counter1 would be preferable because it does not use global scope and can access the variables it needs.
+ * Counter2 would be more preferable if there are more than one function needing the information.
 */
 
 // counter1 code
@@ -57,11 +65,10 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+return Math.floor(Math.random() * 3);
 }
+console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -77,11 +84,22 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(callBack, num){
+  let home = 0;
+  let away = 0;
+  while (num > 0){
+    home === home + callBack()
+    away === away + callBack()
+    num--
+  }
+  let results = {
+  'Home': home,
+  'Away': away
+  } 
+  return results
+} 
 
-  /*Code Here*/
-
-}
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -102,10 +120,26 @@ and returns the score at each pont in the game, like so:
 8th inning: awayTeam - homeTeam
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
-
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function getInningScore(callBack) {
+  let away = callBack();
+  let home = callBack();
+  let currentInning = {
+    'away': away,
+    'home': home
+  }
+  return currentInning;
 }
 
+function scoreboard(callBack1, callBack2, num) {
+  let awayScore = 0
+  let homeScore = 0
+  for (let i = 0; i < num; i++){
+    let resultsOfGetInning = callBack1(callBack2)
+    console.log(`Inning ${i+1}: ${resultsOfGetInning.away} - ${resultsOfGetInning.home}`)
+    awayScore = awayScore + resultsOfGetInning.away
+    homeScore = homeScore + resultsOfGetInning.home
+  }
+  console.log(`Final Score: ${awayScore} - ${homeScore}`)
+}
+console.log(scoreboard(getInningScore, inning, 9))
 
