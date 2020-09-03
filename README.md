@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+Closures allow data to be accessed below where they are declared, moving from the parent level scope to the children level.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+The closure is after the first declaration of the personalDice function. It will return the inside function. You can tell because of the first curly bracket.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+It could change because they are being invoked separately and so getting different random rolls.
+
 c. What is the lexical scope of `newRoll`? 
+
+The personalDice function is the lexical scope of newRoll.
 
 ### Task 2c - Exit Ticket
 
